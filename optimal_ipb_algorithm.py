@@ -313,11 +313,12 @@ class OptimalIpbAlgorithm(QgsProcessingAlgorithm):
             x2 = b[2]
             y2 = b[3]
 
-            # Get centorid
+            # Get centroid
             xc  = (x1 + x2) / 2
             yc  = (y1 + y2) / 2
             (coor_x, coor_y)  = pixel2coord(ds, xc, yc)
-            centroid = QgsPoint(coor_x, coor_y)
+            centroid_point = QgsPoint(coor_x, coor_y)  # For QgsCircle
+            centroid_geom = QgsGeometry.fromPointXY(QgsPointXY(coor_x, coor_y))  # For Point output
 
             # Get geo coordinate of bbox
             (coor_x1, coor_y1)  = pixel2coord(ds, x1, y1)
@@ -329,14 +330,14 @@ class OptimalIpbAlgorithm(QgsProcessingAlgorithm):
 
             if type_val == 0:
                 # -- Point --
-                outFeat.setGeometry( centroid )
+                outFeat.setGeometry(centroid_geom)
             elif type_val == 1:
                 # -- Bbox --
-                outFeat.setGeometry( QgsGeometry.fromPolygonXY(polygon) )
+                outFeat.setGeometry(QgsGeometry.fromPolygonXY(polygon))
             elif type_val == 2:
                 # -- Circle --
-                circle = QgsCircle.fromCenterDiameter(centroid, diameter).toPolygon().asWkt()
-                outFeat.setGeometry( QgsGeometry.fromWkt(circle) )
+                circle_polygon = QgsCircle.fromCenterDiameter(centroid_point, diameter).toPolygon()
+                outFeat.setGeometry(QgsGeometry(circle_polygon))
 
             outFeat.setAttribute(0, str(c))
 

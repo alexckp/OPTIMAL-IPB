@@ -4,9 +4,9 @@
 
 [general]
 name=OPTIMAL-IPB
-qgisMinimumVersion=3.0
+qgisMinimumVersion=3.34
 description=This plugin adds an algorithm to calculate palm tree on high resolution imagery based on machine learning
-version=0.1
+version=0.2
 author=Muhammad Nurdin
 email=muhanur@apps.ipb.ac.id
 
