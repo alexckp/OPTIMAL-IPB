@@ -4,7 +4,7 @@ OPTIMAL-IPB (Oil Palm Trees Identification based on Machine Learning – IPB Uni
 
 ## Installation Steps
 
-:warning: This plugin was developed in python 3.7 environment contained in QGIS version 3.10 A Coruña, and works with keras version 2.4.3 and tensorflow version 2.3.0.
+:warning: **Version 0.2**: This plugin requires **QGIS 3.34+** (LTR 2024) and **TensorFlow 2.15+** with Python 3.9+.
 
 ### 1. Package Required
 
@@ -12,11 +12,11 @@ Some packages need to be installed in the QGIS environment first. There are two 
 
 #### - Package installation via python console in QGIS
 
-Open python console in QGIS and run `import pip` then `pip.main(['install', '-q', '--disable-pip-version-check', 'scipy==1.4.1', 'cython', 'keras-resnet', 'opencv-python', 'pillow', 'progressbar2', 'tensorflow==2.3.0', 'keras==2.4.3', 'numpy==1.18.5', 'protobuf==3.15.8'])` to install all the prerequisites.
+Open python console in QGIS and run `import pip` then `pip.main(['install', '-q', '--disable-pip-version-check', 'scipy', 'opencv-python', 'pillow', 'tensorflow>=2.15.0', 'numpy', 'lsnms'])` to install all the prerequisites.
 
 #### - Module installation via OSGeo4W Shell
 
-Open OSGeo4W Shell then run this command `pip install scipy==1.4.1 cython keras-resnet opencv-python pillow progressbar2 tensorflow==2.3.0 keras==2.4.3 numpy==1.18.5 protobuf==3.15.8`
+Open OSGeo4W Shell then run this command `pip install scipy opencv-python pillow tensorflow>=2.15.0 numpy lsnms`
 
 ### 2. GPU Configuration (Optional)
 This plugin is built using tensorflow as a machine learning framework. For faster process, it is highly recommended to use a GPU. You can find complete instructions for GPU Support through [this link](https://www.tensorflow.org/install/gpu#software_requirements).
@@ -56,6 +56,18 @@ Afterward you can input your raster layer then select model previously downloade
 <img src='imgs/Readme02.png'>
 
 :warning: Update: Now score attribute available on output for each object
+
+## Changelog
+
+### Version 0.2 (December 2024)
+- Upgraded to QGIS 3.34+ LTR compatibility
+- Updated TensorFlow support to 2.15+
+- Fixed deprecated QGIS APIs (QgsMapLayerRegistry, QgsMapCanvasLayer)
+- Optimized geometry handling for better performance
+- Removed legacy TensorFlow v1 compatibility code
+
+### Version 0.1
+- Initial release with TensorFlow 2.3.0 and QGIS 3.0+ support
 
 ## Sources
 
