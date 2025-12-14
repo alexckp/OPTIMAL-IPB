@@ -12,11 +12,11 @@ Some packages need to be installed in the QGIS environment first. There are two 
 
 #### - Package installation via python console in QGIS
 
-Open python console in QGIS and run `import pip` then `pip.main(['install', '-q', '--disable-pip-version-check', 'scipy', 'opencv-python', 'pillow', 'tensorflow>=2.15.0', 'numpy', 'lsnms'])` to install all the prerequisites.
+Open python console in QGIS and run `import pip` then `pip.main(['install', '-q', '--disable-pip-version-check', 'scipy', 'opencv-python', 'pillow', 'tensorflow>=2.15.0', 'numpy>=2.0,<2.3'])` to install all the prerequisites.
 
 #### - Module installation via OSGeo4W Shell
 
-Open OSGeo4W Shell then run this command `pip install scipy opencv-python pillow tensorflow>=2.15.0 numpy lsnms`
+Open OSGeo4W Shell then run this command `pip install scipy opencv-python pillow tensorflow>=2.15.0 "numpy>=2.0,<2.3"`
 
 ### 2. GPU Configuration (Optional)
 This plugin is built using tensorflow as a machine learning framework. For faster process, it is highly recommended to use a GPU. You can find complete instructions for GPU Support through [this link](https://www.tensorflow.org/install/gpu#software_requirements).
@@ -65,6 +65,7 @@ Afterward you can input your raster layer then select model previously downloade
 - Fixed deprecated QGIS APIs (QgsMapLayerRegistry, QgsMapCanvasLayer)
 - Optimized geometry handling for better performance
 - Removed legacy TensorFlow v1 compatibility code
+- Replaced lsnms with built-in NMS for better Python 3.12 compatibility
 
 ### Version 0.1
 - Initial release with TensorFlow 2.3.0 and QGIS 3.0+ support

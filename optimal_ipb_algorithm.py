@@ -57,7 +57,7 @@ import pandas
 import os
 import inspect
 
-from lsnms import nms
+from .helpers import nms_with_scores
 from osgeo import gdal
 
 from qgis.PyQt.QtCore import QVariant
@@ -287,8 +287,7 @@ class OptimalIpbAlgorithm(QgsProcessingAlgorithm):
         flatten_score = np.concatenate(scoreses)
 
         # non max suppression on overlay bboxes
-        # new_boxes = non_max_suppression_fast(bboxeses, overlapThresh=iouthreshold)
-        keep = nms(bboxeses, flatten_score, iou_threshold=0.3)
+        keep = nms_with_scores(bboxeses, flatten_score, iou_threshold=0.3)
         new_boxes = bboxeses[keep]
         new_scores = flatten_score[keep]
 
